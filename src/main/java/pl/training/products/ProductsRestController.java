@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 
-@RequestMapping("${api-prefix}")
+@RequestMapping("${api-prefix}/products")
 @RestController
 @RequiredArgsConstructor
 public class ProductsRestController {
@@ -15,7 +15,7 @@ public class ProductsRestController {
     private final ProductsMapper productsMapper;
     private final UriBuilder uriBuilder = new UriBuilder();
 
-    @PostMapping("products")
+    @PostMapping
     public ResponseEntity<ProductTo> add(@RequestBody ProductTo productTo) {
         Product product = productsMapper.toProduct(productTo);
         Long productId = productsService.addProduct(product).getId();
@@ -23,7 +23,7 @@ public class ProductsRestController {
         return ResponseEntity.created(locationUri).build();
     }
 
-    @GetMapping("products")
+    @GetMapping
     public ResultPageTo<ProductTo> getAll(@RequestParam(defaultValue = "") String nameFragment,
                                           @RequestParam(defaultValue = "0") int pageNumber,
                                           @RequestParam(defaultValue = "5") int pageSize) {
