@@ -1,4 +1,4 @@
-package pl.training.microservices.products;
+package pl.training.products;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
