@@ -1,0 +1,21 @@
+api-prefix: api
+
+keycloak:
+  realm: training
+  auth-server-url: http://localhost:8000/auth
+  resource: products-backend
+  public-client: true
+  securityConstraints:
+    - authRoles:
+        - admin
+      securityCollections:
+        - name: Secured resource
+          patterns:
+            - /manage-products.html
+            - /api/products/*
+    - securityCollections:
+        - name: Public resource
+          patterns:
+            - /api/products/*
+          methods:
+            - GET
